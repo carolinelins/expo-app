@@ -1,33 +1,34 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { ImageBackground, StyleSheet, Text, View, SafeAreaView, TextInput, Button, Image } from 'react-native';
+import { QueryClientProvider, QueryClient } from 'react-query'
 
-const backgroundImage = { uri: 'https://i.pinimg.com/originals/55/b7/e1/55b7e11b3ed5605f979ba991a5523b62.jpg' };
-const dogPicture = { uri: 'https://www.petlove.com.br/images/breeds/193223/profile/original/golden_retriever-p.jpg?1532539102' };
+import Cat from './components/Cat'
+
+const backgroundImage = { uri: 'https://i.pinimg.com/564x/c4/07/eb/c407eb0e894f95737e5649624cd549fb.jpg' };
+
+const queryClient = new QueryClient()
 
 export default function App() {
-  const [name, setName] = React.useState('Marley')
-  const [nameInput, setNameInput] = React.useState('')
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ImageBackground source={backgroundImage} style={{ flex: 1 }}>
-        <View style={styles.centerContentStyle}>
-          <Text style={styles.titleStyle}>{name}</Text>
-        </View>
-        <View style={styles.circle}>
-          <Image style={styles.image} source={dogPicture} />
-        </View>
-        <View style={styles.centerContentStyle}>
-          <Text style={{ textAlign: 'center', fontSize: 20, margin: 5 }}>Altere o nome do cachorro:</Text>
-          <TextInput style={styles.input} value={nameInput} onChangeText={nameInput => setNameInput(nameInput)} textAlign={'center'} />
-          <Button title="Confirmar" onPress={() => setName(nameInput)} />
-        </View>
-        <StatusBar style="auto" />
-      </ImageBackground>
-    </SafeAreaView>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaView style={styles.container}>
+        <ImageBackground source={backgroundImage} style={{ flex: 1 }}>
+          <View style={styles.centerContentStyle}>
+            <Text style={styles.titleStyle}>Facts about cats!</Text>
+          </View>
+          <View style={styles.centerContentStyle}>
+            <Cat />
+          </View>
+          <StatusBar style="auto" />
+        </ImageBackground>
+      </SafeAreaView>
+    </QueryClientProvider>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
   },
   centerContentStyle: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   input: {
     height: 40,
