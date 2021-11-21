@@ -3,17 +3,17 @@ import { useQuery, QueryClient, QueryClientProvider } from 'react-query'
 import axios from 'axios'
 import { StyleSheet, Text, Button, View, SafeAreaView, StatusBar, ImageBackground } from 'react-native'
 
-const backgroundImage = { uri: 'https://i.pinimg.com/564x/c4/07/eb/c407eb0e894f95737e5649624cd549fb.jpg' };
+const backgroundImage = { uri: 'https://i.pinimg.com/564x/a4/74/cf/a474cfafda13ca72bd15196b02d9b13b.jpg' };
 
 const queryClient = new QueryClient()
 
-async function fetchCat() {
-    const data = await axios.get('https://cat-fact.herokuapp.com/facts/random?animal_type=cat')
+async function fetchDog() {
+    const data = await axios.get('https://cat-fact.herokuapp.com/facts/random?animal_type=dog')
     return data
 }
 
-function CatFetch() {
-    const { data, error, isError, isLoading, refetch } = useQuery('cat', fetchCat)
+function DogFetch() {
+    const { data, error, isError, isLoading, refetch } = useQuery('dog', fetchDog)
 
     if (isLoading) {
         return <Text style={{ textAlign: 'center', fontSize: 20, margin: 5 }}>Loading...</Text>
@@ -30,18 +30,18 @@ function CatFetch() {
     )
 }
 
-export default function Cat({ navigation }) {
+export default function Dog({ navigation }) {
     return (
         <QueryClientProvider client={queryClient}>
             <SafeAreaView style={styles.container}>
                 <ImageBackground source={backgroundImage} style={{ flex: 1 }}>
                     <View style={styles.centerContentStyle}>
-                        <Text style={styles.titleStyle}>Facts about cats!</Text>
+                        <Text style={styles.titleStyle}>Facts about dogs!</Text>
                     </View>
                     <View style={styles.centerContentStyle}>
-                        <CatFetch />
+                        <DogFetch />
                     </View>
-                    <Button title="Go to DOG FACTS" onPress={() => navigation.navigate('DOG FACTS')} />
+                    <Button title="Go to CAT FACTS" onPress={() => navigation.navigate('CAT FACTS')} />
                     <StatusBar style="auto" />
                 </ImageBackground>
             </SafeAreaView>
