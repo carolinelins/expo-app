@@ -10,9 +10,17 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="CAT FACTS" component={Cat} />
-        <Stack.Screen name="DOG FACTS" component={Dog} />
+      <Stack.Navigator screenOptions={{
+        headerStyle: {
+          backgroundColor: '#f7b1b1',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        }
+      }}>
+        <Stack.Screen name="Cat" component={Cat} options={{ title: 'CAT FACTS' }} />
+        <Stack.Screen name="Dog" component={Dog} options={{ title: 'DOG FACTS' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

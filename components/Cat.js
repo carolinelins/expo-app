@@ -41,7 +41,7 @@ export default function Cat({ navigation }) {
                     <View style={styles.centerContentStyle}>
                         <CatFetch />
                     </View>
-                    <Button title="Go to DOG FACTS" onPress={() => navigation.navigate('DOG FACTS')} />
+                    <Button title="Go to DOG FACTS" onPress={() => navigation.navigate('Dog')} />
                     <StatusBar style="auto" />
                 </ImageBackground>
             </SafeAreaView>
