@@ -1,27 +1,28 @@
 import React from 'react';
+import { NativeBaseProvider, Center, Avatar, Heading } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Cat from './components/Cat'
-import Dog from './components/Dog'
+import Home from './components/Home'
+import AcademicFormation from './components/AcademicFormation'
+import Certification from './components/Certification';
+import Hobby from './components/Hobby';
 
-const Stack = createNativeStackNavigator();
+const Stacke = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerStyle: {
-          backgroundColor: '#f7b1b1',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        }
-      }}>
-        <Stack.Screen name="Cat" component={Cat} options={{ title: 'CAT FACTS' }} />
-        <Stack.Screen name="Dog" component={Dog} options={{ title: 'DOG FACTS' }} />
-      </Stack.Navigator>
+      <NativeBaseProvider>
+
+        <Stacke.Navigator initialRouteName='Currículo'>
+          <Stacke.Screen name="Currículo" component={Home} />
+          <Stacke.Screen name="Formação Acadêmica" component={AcademicFormation} />
+          <Stacke.Screen name="Certificados" component={Certification} />
+          <Stacke.Screen name="Hobbies" component={Hobby} />
+        </Stacke.Navigator>
+
+      </NativeBaseProvider>
     </NavigationContainer>
   );
 }
